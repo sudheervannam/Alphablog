@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alpha1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%
+=begin%>
+ <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>  
+<%
+=end%>
+  </head>
+
+  <body class="d-flex flex-column">
+    <%= render "layouts/navigation" %>
+    <%= render "layouts/messages" %>
+    <%= yield %>
+  </body>
+</html>
