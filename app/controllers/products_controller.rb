@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController 
- #before_action :set_product, only: [:show, :edit, :update, :destroy]
+ before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def show
-    @product = Product.find(params[:id])
+    
   end 
 
   def index 
@@ -14,11 +14,12 @@ class ProductsController < ApplicationController
   end 
 
   def edit 
-    @product = Product.find(params[:id])
+   
   end 
 
   def create 
-    @product = Product.new(params)
+    @product = Product.new(product_params)
+    @product.user = User.first  
     if @product.save
       flash[:notice] = "Products was created succesfully"
       redirect_to @product
@@ -28,7 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def update 
-    if @product.update(params)
+    if @product.update(product_params)
       flash[:notice] = "Product was updated succesfully"
       redirect_to @product
     else  
@@ -41,14 +42,14 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-  #private 
+  private 
 
-  # def set_product
-  #   @product = Product.find(params[:id])
-  # end
+   def set_product
+     @product = Product.find(params[:id])
+   end
   
-  def params 
-    params.require(:product).permit(:title, :description)
+  def  product_params 
+    product_params.require(:product).permit(:title, :description)
   end
 
 end
